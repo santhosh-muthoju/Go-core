@@ -1,4 +1,4 @@
-package internal
+package attachments
 
 type User struct {
 	ID         string
