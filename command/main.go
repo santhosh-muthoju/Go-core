@@ -5,6 +5,5 @@ import (
 )
 
 func main() {
-	sampleAcc := attachments.NewAccount(2000.0)
-	attachments.SamplePrintClosure(sampleAcc)
+	attachments.PrintForSampleDefer()
 }
