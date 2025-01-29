@@ -1,13 +1,14 @@
 package main
 
-import "interviewPrep/concurrency"
+import (
+	"interviewPrep/concurrency"
+)
 
 func main() {
 	done := make(chan bool)
-	go concurrency.Greet("Nice to meet you..", done)
-	go concurrency.SlowGreet("Watsupppp?", done)
-	go concurrency.Greet("I hope you are doing good!", done)
-	<-done
-	<-done
-	<-done
+	go concurrency.AddNums(10, 20, done)
+	go concurrency.SubNums(30, 20, done)
+	go concurrency.AddNums(10, 20, done)
+	for range done {
+	}
 }
