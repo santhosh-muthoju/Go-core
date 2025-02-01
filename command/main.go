@@ -1,9 +1,7 @@
 package main
 
-import (
-	"interviewPrep/concurrency"
-)
+import "interviewPrep/concurrency"
 
 func main() {
-	concurrency.CallInMain()
+	concurrency.PrintInMain06()
 }
