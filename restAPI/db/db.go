@@ -1,85 +1,46 @@
-// package db
-
-// import (
-// 	"database/sql"
-
-// 	_ "github.com/mattn/go-sqlite3"
-// )
-
-// var DB *sql.DB
-
-// func InitDB() {
-// 	var err error
-// 	DB, err = sql.Open("sqlite3", "api.db")
-
-// 	if err != nil {
-// 		panic("Could not connect to database.")
-// 	}
-
-// 	DB.SetMaxOpenConns(10)
-// 	DB.SetMaxIdleConns(5)
-
-// 	createTables()
-// }
-
-// func createTables() {
-// 	createEventsTable := `
-// 	CREATE TABLE IF NOT EXISTS events (
-// 	  id INTEGER PRIMARY KEY AUTOINCREMENT,
-// 	  name TEXT NOT NULL,
-// 	  description TEXT NOT NULL,
-// 	  location TEXT NOT NULL,
-// 	  dateTime DATETIME NOT NULL,
-// 	  user_id INTEGER
-// 	)
-// 	`
-
-// 	_, err := DB.Exec(createEventsTable)
-
-// 	if err != nil {
-// 		panic("could not create the events table.")
-// 	}
-// }
-
 package db
 
 import (
 	"database/sql"
-
-	_ "github.com/mattn/go-sqlite3" // Import the SQLite3 driver
-
+	"fmt"
 	"log"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var DB *sql.DB
 
 func InitDB() {
 	var err error
-	DB, err = sql.Open("sqlite3", "api.db") // Ensure "api.db" is accessible
+	dsn := "root:RootRoot@tcp(localhost:3306)/events_db"
 
+	DB, err = sql.Open("mysql", dsn)
 	if err != nil {
-		log.Fatalf("Could not connect to database: %v", err) // Show actual error
+		log.Fatalf("Could not connect to database: %v", err)
 	}
 
-	DB.SetMaxOpenConns(10)
-	DB.SetMaxIdleConns(5)
+	if err := DB.Ping(); err != nil {
+		log.Fatalf("Database connection failed: %v", err)
+	}
 
+	fmt.Println("MySQL database connected successfully.")
 	createTables()
 }
 
 func createTables() {
-	createEventsTable := `
+	query := `
 	CREATE TABLE IF NOT EXISTS events (
-	  id INTEGER PRIMARY KEY AUTOINCREMENT,
-	  name TEXT NOT NULL,
-	  description TEXT NOT NULL,
-	  location TEXT NOT NULL,
-	  dateTime DATETIME NOT NULL,
-	  user_id INTEGER 
-	);` // Added ';' at the end (good practice)
-
-	_, err := DB.Exec(createEventsTable)
+		id INT AUTO_INCREMENT PRIMARY KEY,
+		name VARCHAR(255) NOT NULL,
+		description TEXT NOT NULL,
+		location VARCHAR(255) NOT NULL,
+		dateTime DATETIME NOT NULL,
+		user_id INT
+	);
+	`
+	_, err := DB.Exec(query)
 	if err != nil {
-		log.Fatalf("Error creating events table: %v", err) // Print actual error
+		log.Fatalf("Failed to create tables: %v", err) // Proper error logging
 	}
+	fmt.Println("Tables checked/created successfully.")
 }

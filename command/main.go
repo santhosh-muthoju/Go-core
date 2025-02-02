@@ -1,7 +1,12 @@
 package main
 
-import "interviewPrep/concurrency"
+import (
+	"interviewPrep/restAPI/db"
+	"interviewPrep/restAPI/routes"
+)
 
 func main() {
-	concurrency.PrintInMain09()
+	db.InitDB()
+	r := routes.RouterConfig()
+	r.Run(":8081")
 }
