@@ -3,7 +3,8 @@ package generics
 import "fmt"
 
 // Generics is used to eliminate the necessacity of writing the repeting or duplicate code or functions
-
+//Generics in Go allow you to write functions and data structures that work with multiple types while maintaining type safety.
+// Instead of writing duplicate code for different types, generics enable type parameters, which are specified using square brackets ([]).
 type Number interface {
 	int | int32 | int64 | float32 | float64
 }
