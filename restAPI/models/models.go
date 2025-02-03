@@ -17,7 +17,7 @@ type Event struct {
 }
 
 func Save(event Event) (int64, error) {
-	// ✅ Ensure DateTime is properly formatted
+	//Ensure DateTime is properly formatted
 	var formattedDateTime string
 	if event.DateTime.IsZero() {
 		formattedDateTime = time.Now().Format("2006-01-02 15:04:05")
@@ -25,7 +25,7 @@ func Save(event Event) (int64, error) {
 		formattedDateTime = event.DateTime.Format("2006-01-02 15:04:05")
 	}
 
-	// ✅ Ensure user_id is set correctly
+	// Ensure user_id is set correctly
 	if event.UserId == 0 {
 		event.UserId = 1 // Default to 1 (or another appropriate value)
 	}
@@ -72,7 +72,7 @@ func GetAllEvents() ([]Event, error) {
 			return nil, err
 		}
 
-		// ✅ Convert MySQL DATETIME string to time.Time
+		// Convert MySQL DATETIME string to time.Time
 		event.DateTime, err = time.Parse("2006-01-02 15:04:05", dateTimeStr)
 		//or also use this event.DateTime, err = time.Parse(time.RFC3339, dateTimeStr)
 		if err != nil {

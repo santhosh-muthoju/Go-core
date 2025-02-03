@@ -1,4 +1,4 @@
-package attachments
+package pointers
 
 import "fmt"
 
@@ -17,6 +17,7 @@ func DemoPointer() {
 	// You can see in the O/P that both the above values are same
 
 	//Now '*' can be used to access the value of num1 by placing it infront of its pointer which is num2
+	//This process of acessing the value of original var through its pointer is called "dereferencing".
 	fmt.Println(*num2)
 
 	// The above O/P is equal to the value of num which is 100 :)

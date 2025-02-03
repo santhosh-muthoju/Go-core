@@ -1,4 +1,4 @@
-package attachments
+package interfaces
 
 import "fmt"
 
@@ -22,4 +22,13 @@ type Bird struct{}
 
 func (b Bird) MakeSound() {
 	fmt.Println("TweetTweet!")
+}
+
+func PrintInMainIf02() {
+	dog := Dog{}
+	cat := Cat{}
+	bird := Bird{}
+	dog.MakeSound()
+	cat.MakeSound()
+	bird.MakeSound()
 }
