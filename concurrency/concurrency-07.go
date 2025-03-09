@@ -22,15 +22,15 @@ func GetSingleton() *Singleton {
 	return instance
 }
 
-func PrintINMain07(num *Singleton) {
+func PrintINMain07(value *Singleton) {
 	var wg sync.WaitGroup
 
 	for i := 0; i < 5; i++ {
 		wg.Add(1)
 		func() {
 			defer wg.Done()
-			num = GetSingleton()
-			fmt.Printf("Singleton value: %d\n", num.num)
+			value = GetSingleton()
+			fmt.Printf("Singleton value: %d\n", value.num)
 		}()
 	}
 	wg.Wait()

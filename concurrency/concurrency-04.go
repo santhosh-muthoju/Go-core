@@ -42,7 +42,7 @@ func CallinMain04() {
 	var wg sync.WaitGroup
 
 	wg.Add(1)
-	go WriteData("Christiano", "Rolnaldo", &wg)
+	go WriteData("Christiano", "Ronaldo", &wg)
 
 	//now open multiple readers
 	for i := 0; i < 2; i++ {

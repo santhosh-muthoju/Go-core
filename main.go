@@ -1,7 +1,9 @@
 package main
 
-import "interviewPrep/generics"
+import (
+	"interviewPrep/attachments/functions"
+)
 
 func main() {
-	generics.PrintInMainGs01()
+	functions.PrintClouser()
 }

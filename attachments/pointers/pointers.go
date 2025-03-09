@@ -27,6 +27,6 @@ func DemoPointer() {
 	fmt.Println("The value of num1:", num1)
 
 	//For the above O/P you see num1 = 200 means a pointer can be used to
-	// change the value of original variable where its pointing to usinf '*' :)!
+	// change the value of original variable where its pointing to using '*' :)!
 
 }

@@ -22,3 +22,23 @@ func PrintNums2(ch chan bool, wg *sync.WaitGroup) {
 		ch <- true
 	}
 }
+
+func PrintMain02() {
+	var wg sync.WaitGroup
+	ch := make(chan bool)
+
+	wg.Add(3)
+	go PrintNums2(ch, &wg)
+	go PrintNumsSlow(ch, &wg)
+	go PrintNums2(ch, &wg)
+
+	go func() {
+		wg.Wait()
+		close(ch)
+	}()
+
+	for range ch {
+	}
+
+	fmt.Println("All goroutines have finished.")
+}

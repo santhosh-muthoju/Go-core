@@ -28,4 +28,5 @@ func PrintInMain05() {
 	case <-time.After(3 * time.Second):
 		fmt.Println("Timeout! No message received")
 	}
+
 }
